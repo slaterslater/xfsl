@@ -61,15 +61,15 @@ export default {
       of: [{ type: 'string' }],
       options: {
         list: [
-          {title: 'Home', value: 'Home'},
           {title: 'Away', value: 'Away'},
+          {title: 'Home', value: 'Home'},
           {title: 'Tie', value: 'Tie'},
           {title: 'Not Played', value: 'Not Played'},
         ]
       },
       validation: Rule => Rule.max(1)
     },
-  ],
+  ], // fields
   preview: {
     select: {
       week: 'week',
@@ -87,10 +87,17 @@ export default {
       }
       return {
         title: `${away || '???'} vs ${home || '???'}`,
-        subtitle: `${week} - ${month_name()} ${parseInt(day)} @ ${time}`,
+        subtitle: `${month_name()} ${parseInt(day)} @ ${time} : ${week}`,
       }
     }
-  }
+  }, // preview
+  orderings: [
+    {
+      title: 'Date',
+      name: 'date_desc',
+      by: [
+        {field: 'date', direction: 'asc'},
+      ]
+    },
+  ], // orderings
 }
-
-// sort first by date, then by time
