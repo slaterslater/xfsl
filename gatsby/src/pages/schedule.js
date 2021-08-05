@@ -2,11 +2,11 @@ import React from "react"
 
 import Seo from "../components/seo"
 
-const IndexPage = () => (
+const SchedulePage = () => (
   <>
     <Seo title="Home" />
-    <p>index</p>
+    <p>Schedule</p>
   </>
 )
 
-export default IndexPage
+export default SchedulePage

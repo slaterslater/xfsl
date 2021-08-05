@@ -4,3 +4,5 @@ dist
 notes
 *.ndjson
 *.txt
+sanity/config
+sanity/production
