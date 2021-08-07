@@ -4,10 +4,11 @@ import SEO from "../components/SEO"
 
 const SchedulePage = () => {
   const [ranks, weeks] = useContext(LeagueContext)
+  console.log('LEAGUECONTEXT', `${ranks} & ${weeks}`)
   return (
   <>
     <SEO title="Home" />
-    <p>Schedule {ranks[0]} {weeks[0]}</p>
+    <p>Schedule</p>
   </>
 )
 }

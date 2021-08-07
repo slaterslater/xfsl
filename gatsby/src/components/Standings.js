@@ -2,7 +2,7 @@ import React from 'react'
 
 const Standings = ({games}) => {
   const empty = () => ({'gp':0, 'win':0, 'loss':0, 'tie':0})
-    const results = games.reduce((total, game) => {  
+  const results = games.reduce((total, game) => {  
     if(!total[game.away]) total[game.away] = empty()
     if(!total[game.home]) total[game.home] = empty()
     let away_result = 'tie', home_result = 'tie' 

@@ -5,7 +5,7 @@ export const LeagueContext = createContext()
 
 export const LeagueProvider = ({ children }) => {
   const [ranks, setRanks] = useState(['foo']);
-  const [weeks, setWeeks] = useState(['bar'])
+  const [weeks, setWeeks] = useState(['bar']);
   const data = useStaticQuery(graphql`
   query {
   games: allSanityGame {
