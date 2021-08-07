@@ -16,7 +16,7 @@ export const LeagueProvider = ({ children }) => {
 `)
   // const num = 5
   return (
-    <LeagueContext.Provider value={[ranks, weeks]}>
+    <LeagueContext.Provider value={{ranks, weeks}}>
       {children}
     </LeagueContext.Provider>
   );
