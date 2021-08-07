@@ -1,12 +1,15 @@
-import React from "react"
+import React, { useContext } from "react"
+import { LeagueContext } from "../components/LeagueContext"
+import SEO from "../components/SEO"
 
-import Seo from "../components/seo"
-
-const SchedulePage = () => (
+const SchedulePage = () => {
+  const [ranks, weeks] = useContext(LeagueContext)
+  return (
   <>
-    <Seo title="Home" />
-    <p>Schedule</p>
+    <SEO title="Home" />
+    <p>Schedule {ranks[0]} {weeks[0]}</p>
   </>
 )
+}
 
 export default SchedulePage

@@ -1,12 +1,13 @@
 import React from "react"
+import Footer from "./Footer"
+import Nav from "./Nav"
 
 const Layout = ({ children }) => {
   return (
     <>
+      <Nav />
       {children}
-      <footer>
-        XFSL {new Date().getFullYear()}
-      </footer>
+      <Footer />
     </>
   )
 }
