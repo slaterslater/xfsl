@@ -2,7 +2,7 @@
 import { graphql } from "gatsby"
 import React, { useContext } from "react"
 import SEO from "../components/SEO"
-import Standings from "../components/standings"
+import Standings from "../components/Standings"
 
 const StandingsPage = ({data}) => {
   const games = data.games.nodes
