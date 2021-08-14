@@ -1,31 +1,42 @@
-
-import { graphql } from "gatsby"
 import React, { useContext } from "react"
 import SEO from "../components/SEO"
-import Standings from "../components/Standings"
+import { LeagueContext } from "../components/LeagueContext"
+// import Standings from "../components/Standings"
 
-const StandingsPage = ({data}) => {
-  const games = data.games.nodes
+const StandingsPage = () => {
+  // const games = data.games.nodes
+
+  const { ranks } = useContext(LeagueContext)
+  console.log("STANDINGS FROM CONTEXT", ranks)
   return (
-  <>
-    <SEO title="Home" />
-    <p>Standings page</p>
-    <Standings games={games} />
-  </>
-)
-  }
+    <>
+      <SEO title="Standings" />
+      {/* <p>Standings page</p> */}
+      <table>
+        <tr>
+          <th>Rank</th>
+          <th>Team</th>
+          <th>GP</th>
+          <th>W</th>
+          <th>L</th>
+          <th>T</th>
+          <th>PTS</th>
+        </tr>
+        {ranks.map((team, i) => (
+          <tr>
+            <td>{i+1}</td>
+            <td>{team.name}</td>
+            <td>{team.record.gp}</td>
+            <td>{team.record.win}</td>
+            <td>{team.record.loss}</td>
+            <td>{team.record.tie}</td>
+            <td>{team.record.pts}</td>
+          </tr>
+        ))}
+      </table>
+      
+    </>
+  )
+}
 
 export default StandingsPage
-
-export const query = graphql`
-query {
-  games: allSanityGame(filter: {winner: {ne: "[]"}}) {
-    nodes {
-      _id
-      home
-      winner
-      away
-    }
-  }
-}
-`

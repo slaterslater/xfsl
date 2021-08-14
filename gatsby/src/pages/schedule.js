@@ -3,12 +3,12 @@ import { LeagueContext } from "../components/LeagueContext"
 import SEO from "../components/SEO"
 
 const SchedulePage = () => {
-  const {ranks, weeks} = useContext(LeagueContext)
-  console.log('LEAGUECONTEXT', `${ranks} & ${weeks}`)
+  const { weeks } = useContext(LeagueContext)
+
   return (
     <>
-      <SEO title="Home" />
-      <p>Schedule</p>
+      <SEO title="Schedule" />
+      <p>Schedule of {weeks}</p>
     </>
   )
 }

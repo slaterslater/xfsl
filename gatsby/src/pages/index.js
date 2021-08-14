@@ -1,40 +1,46 @@
 import { graphql } from "gatsby"
-import React from "react"
-
+import React, { useEffect, useState } from "react"
 import SEO from "../components/SEO"
 
-const IndexPage = ({data}) => { 
-  const games = data.games.nodes
-  
+const IndexPage = ({ data }) => {
+  const [thisWeek, setThisWeek] = useState([])
+
+  useEffect(() => {
+    const now = new Date()
+    now.setTime(now.getTime() - now.getTimezoneOffset() * 6000) // adjusts for ISO
+    const today = now.getDate()
+
+    // finds two dates seven days apart in YYYY-MM-DD format
+    const [gt_date, lte_date] = [today, today + 7].map(date => {
+      now.setDate(date - process.env.GATSBY_OFFSET_DAYS)
+      return now.toISOString().split("T")[0]
+    })
+
+    const isInDateRange = game => game.date > gt_date && game.date <= lte_date
+
+    const games = data.games.nodes.filter(game => isInDateRange(game))
+    setThisWeek(games)
+  }, [])
+
   return (
-  <>
-    <SEO title="Home" />
-    <p>index</p>
-    <p>there {data.games.totalCount} games</p>  
-  </>
+    <>
+      <SEO title="Home" />
+      <p>index</p>
+      <p>there {thisWeek.length} games</p>
+      <ul>
+        {thisWeek.map(game => (
+          <li key={game.id}>
+            {game.away} @ {game.home}
+          </li>
+        ))}
+      </ul>
+    </>
   )
 }
 
-// take a date and return YYYY-MM-DD
-const getDateString = date => {
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-  const [mm, dd] = [month, day].map(num => String(num).padStart(2, '0'))
-  return `${date.getFullYear()}-${mm}-${dd}`
-}
-
-// get the desired date range
-const now = new Date()
-const today = now.getDate()
-now.setDate(today - 2)
-const gt_date = getDateString(now)
-now.setDate(today + 7 - 2)
-const lte_date = getDateString(now)
-
 export const query = graphql`
   query {
-    games: allSanityGame(sort: {order: ASC, fields: date}) {
-      totalCount
+    games: allSanityGame(sort: { fields: [date, time], order: [ASC, ASC] }) {
       nodes {
         id
         week

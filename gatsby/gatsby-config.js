@@ -7,7 +7,7 @@ module.exports = {
     title: `XFSL`,
     description: `Xtremely Friendly Softball League`,
     author: `slaterslater`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    siteUrl: `https://xfsl.netlify.app/`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -38,13 +38,14 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
     {
-      resolve: 'gatsby-source-sanity',
+      resolve: "gatsby-source-sanity",
       options: {
-        projectId: 'vh1vzwae',
-        dataset: 'production',
+        projectId: "vh1vzwae",
+        dataset: "production",
         watchMode: true,
         token: process.env.GATSBY_SANITY_TOKEN,
       },
     },
+    `gatsby-plugin-styled-components`,
   ],
 }
