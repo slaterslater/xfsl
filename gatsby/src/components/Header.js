@@ -12,12 +12,17 @@ const HeaderStyles = styled.header`
   align-items: center;
   background-color: var(--blue);
   padding: 15px 0;
+  h1 {
+    position: absolute;
+    left: -9999em;
+  }
 `
 
 const Header = () => {
   return (
     <HeaderStyles>
       <Link to="/">
+        <h1>Xtremely Friendly Softball League</h1>
         <img src={Logo} alt="logo" width="80" height="40" />
       </Link>
       <Nav />
