@@ -5,7 +5,6 @@ export const LeagueContext = createContext()
 
 export const LeagueProvider = ({ children }) => {
   const [ranks, setRanks] = useState(["foo"])
-  const [weeks, setWeeks] = useState(["bar"])
 
   const data = useStaticQuery(graphql`
     query {
@@ -24,15 +23,12 @@ export const LeagueProvider = ({ children }) => {
 
   useEffect(() => {
     const played = data.games.nodes
-    // console.log(games)
-    console.log(played.length)
-
-      const empty = () => ({ gp: 0, win: 0, loss: 0, tie: 0 })
-      const results = played.reduce((total, game) => {
+    const empty = () => ({ gp: 0, win: 0, loss: 0, tie: 0 })
+    const results = played.reduce((total, game) => {
       if (!total[game.away]) total[game.away] = empty()
       if (!total[game.home]) total[game.home] = empty()
-      let away_result = "tie",
-        home_result = "tie"
+      let away_result = "tie"
+      let home_result = "tie"
       if (game.winner == "Away") {
         away_result = "win"
         home_result = "loss"
@@ -57,11 +53,8 @@ export const LeagueProvider = ({ children }) => {
     standings.sort((a, b) => b.record.pts - a.record.pts)
 
     setRanks(standings)
-
-
   }, [])
 
-  // const num = 5
   return (
     <LeagueContext.Provider value={{ ranks, weeks }}>
       {children}
