@@ -1,4 +1,5 @@
 import { BiBaseball as icon } from 'react-icons/bi';
+import dayjs from 'dayjs'
 
 const teams = [
   {title: 'Diamond Heist', value: 'Diamond Heist'},
@@ -15,7 +16,7 @@ export default {
   fields: [
     {
       title: 'Week',
-      name: 'week',
+      name: 'name',
       type: 'string',
     },
     {
@@ -72,22 +73,16 @@ export default {
   ], // fields
   preview: {
     select: {
-      week: 'week',
+      week: 'name',
       date: 'date',
       time: 'time.0',
       away: 'away.0',
       home: 'home.0',
     },
     prepare({ week, date, time, home, away }) {
-      const [year, month, day] = date.split('-')
-      const month_name = () => {
-        let date_obj = new Date()
-        date_obj.setMonth(parseInt(month) - 1)
-        return date_obj.toDateString().split(' ')[1]
-      }
       return {
         title: `${away || '???'} vs ${home || '???'}`,
-        subtitle: `${month_name()} ${parseInt(day)} @ ${time} : ${week}`,
+        subtitle: `${dayjs(date).format('MMMM D')} @ ${time} : ${week}`,
       }
     }
   }, // preview
