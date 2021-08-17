@@ -21,6 +21,7 @@ export const TableStyles = styled.table`
   .th {
     text-transform: uppercase;
     color: var(--darkgrey);
+    background-color: var(--white);
     font-size: small;
     font-weight: bold;
     text-align: right;
@@ -32,5 +33,8 @@ export const TableStyles = styled.table`
     @media (min-width:300px){
       min-width: 1px;
     }
+  }
+  li sup {
+    top: -0.3em;
   }
 `

@@ -3,28 +3,7 @@ import React, { useEffect, useState, useContext } from "react"
 import dayjs from 'dayjs'
 import SEO from "../components/SEO"
 import { LeagueContext } from "../components/LeagueContext"
-import styled from "styled-components"
 import { TableStyles } from "../styles/TableStyles"
-
-const LeaderboardStyles = styled.ul`
-  list-style-type: none;
-  text-align: center;
-  padding: 0;
-  margin: 0;
-  li span {
-    width: 185px;
-    padding: 5px;
-    text-align: center;
-    display: inline-block;
-  }
-  .rank{
-    width:50px;
-    text-align:right;
-    font-size:small;
-    font-weight: bold;
-    color: var(--slate)
-  }
-`
 
 const IndexPage = ({ data }) => {
   const [thisWeek, setThisWeek] = useState({})
@@ -66,14 +45,9 @@ const IndexPage = ({ data }) => {
           </tbody>
       </TableStyles>
       <h3>XFSL Standings</h3>
-      {/* <LeaderboardStyles>
-        {ranking.map((team, i)=> (
-          <li key={team.name}><span className='rank'>{i+1}<sup>{position[i]}</sup></span> <span className={team.name}>{team.name}</span></li>
-        ))}
-      </LeaderboardStyles> */}
       <TableStyles>
         <tr>
-          <th><acronym title="position">POS</acronym></th>
+          <th class='offscreen'>Position</th>
           <th>TEAM</th>
           <th><acronym title="games played">GP</acronym></th>
           <th><acronym title="wins">W</acronym></th>
@@ -83,7 +57,7 @@ const IndexPage = ({ data }) => {
         </tr>
         {ranking.map((team, i) => (
           <tr className={team.name}>
-            <td>{i + 1}</td>
+            <td className='th'>{i + 1}<sup>{position[i]}</sup></td>
             <td>{team.name}</td>
             <td>{team.record.gp}</td>
             <td>{team.record.win}</td>
