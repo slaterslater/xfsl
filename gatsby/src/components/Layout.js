@@ -71,10 +71,10 @@ const ContentStyles = styled.div`
   /* @media (max-width:800px) {
     width:400px;
   } */
-  @media (min-width: 600px){
+  @media (min-width: 600px) {
     width: 500px;
     padding: 30px;
-    padding-top:10px;
+    padding-top: 10px;
   }
 `
 

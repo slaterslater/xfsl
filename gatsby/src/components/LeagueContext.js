@@ -43,7 +43,7 @@ export const LeagueProvider = ({ children }) => {
       total[game.home][home_result]++
       return total
     }, {})
-    for (const [ _, result] of Object.entries(results)) {
+    for (const [_, result] of Object.entries(results)) {
       result.pts = result.win * 2 + result.tie
     }
     let standings = Object.keys(results).map(key => ({

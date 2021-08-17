@@ -12,13 +12,25 @@ const StandingsPage = () => {
       <h2>Standings 2021</h2>
       <TableStyles>
         <tr>
-          <th><acronym title="position">POS</acronym></th>
+          <th>
+            <acronym title="position">POS</acronym>
+          </th>
           <th>TEAM</th>
-          <th><acronym title="games played">GP</acronym></th>
-          <th><acronym title="wins">W</acronym></th>
-          <th><acronym title="losses">L</acronym></th>
-          <th><acronym title="ties">T</acronym></th>
-          <th><acronym title="points">PTS</acronym></th>
+          <th>
+            <acronym title="games played">GP</acronym>
+          </th>
+          <th>
+            <acronym title="wins">W</acronym>
+          </th>
+          <th>
+            <acronym title="losses">L</acronym>
+          </th>
+          <th>
+            <acronym title="ties">T</acronym>
+          </th>
+          <th>
+            <acronym title="points">PTS</acronym>
+          </th>
         </tr>
         {ranking.map((team, i) => (
           <tr className={team.name}>

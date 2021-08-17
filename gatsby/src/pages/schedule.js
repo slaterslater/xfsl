@@ -30,27 +30,27 @@ const SchedulePage = ({ data }) => {
       <SEO title="Schedule" />
       <h2>XFSL Season 2021</h2>
       {season.map((week, i) => (
-        <div key={week.date} id={`week${i+1}`}>
-          <h3>{dayjs(week.date).format('MMMM D')}</h3>
+        <div key={week.date} id={`week${i + 1}`}>
+          <h3>{dayjs(week.date).format("MMMM D")}</h3>
           <TableStyles>
-          {/* <caption>{week.name}</caption> */}
-        <thead>
-        <tr>
-          <th className='offscreen'>Time</th>
-          <th>Away</th>
-          <th>Home</th>
-        </tr>
-        </thead>
-        <tbody>
-        {week.games?.map(game => (
-          <tr key={game.id}>
-            <td className='th'>{game.time}</td> 
-            <td className={game.away}>{game.away}</td>
-            <td className={game.home}>{game.home}</td>
-          </tr>
-        ))}
-        </tbody>
-      </TableStyles>
+            {/* <caption>{week.name}</caption> */}
+            <thead>
+              <tr>
+                <th className="offscreen">Time</th>
+                <th>Away</th>
+                <th>Home</th>
+              </tr>
+            </thead>
+            <tbody>
+              {week.games?.map(game => (
+                <tr key={game.id}>
+                  <td className="th">{game.time}</td>
+                  <td className={game.away}>{game.away}</td>
+                  <td className={game.home}>{game.home}</td>
+                </tr>
+              ))}
+            </tbody>
+          </TableStyles>
         </div>
       ))}
     </>

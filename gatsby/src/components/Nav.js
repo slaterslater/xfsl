@@ -32,9 +32,14 @@ const Nav = () => (
         <Link to="/">This Week</Link>
       </li>
       <li>
-      <Link to="/">
-        <StaticImage src="../images/xfsl-logo.png" width={80} height={40} alt="logo" />
-      </Link>
+        <Link to="/">
+          <StaticImage
+            src="../images/xfsl-logo.png"
+            width={80}
+            height={40}
+            alt="logo"
+          />
+        </Link>
       </li>
       <li>
         <Link to="/schedule">Schedule</Link>

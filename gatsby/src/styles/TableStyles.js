@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import styled from "styled-components"
 
 export const TableStyles = styled.table`
   border-collapse: collapse;
-  text-align:center;
+  text-align: center;
   width: 100%;
   margin-bottom: 35px;
-  caption{
+  caption {
     margin-bottom: 10px;
   }
   acronym[title] {
@@ -16,7 +16,7 @@ export const TableStyles = styled.table`
     color: var(--darkgrey);
     font-size: small;
     font-weight: bold;
-    padding-bottom:5px;
+    padding-bottom: 5px;
   }
   .th {
     text-transform: uppercase;
@@ -28,9 +28,9 @@ export const TableStyles = styled.table`
     width: 20px;
   }
   td {
-    min-width:50px;
+    min-width: 50px;
     padding: 5px;
-    @media (min-width:300px){
+    @media (min-width: 300px) {
       min-width: 1px;
     }
   }

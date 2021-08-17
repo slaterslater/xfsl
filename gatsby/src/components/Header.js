@@ -14,8 +14,7 @@ const Header = () => {
   return (
     <HeaderStyles>
       <Link to="/">
-        <h1 className='offscreen'>Xtremely Friendly Softball League</h1>
-        
+        <h1 className="offscreen">Xtremely Friendly Softball League</h1>
       </Link>
       <Nav />
     </HeaderStyles>
