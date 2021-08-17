@@ -24,9 +24,11 @@ const GlobalStyle = createGlobalStyle`
     flex-direction: column;
     font-family: Helvetica, Arial, sans-serif;
     --radius: 8px;
+    --h2top: 15px;
     @media (max-width: 400px) {
       background-color: var(--white);
       --radius: 0;
+      --h2top: 5px;
     }
   }
   .Diamond {
@@ -42,6 +44,7 @@ const GlobalStyle = createGlobalStyle`
   }
   .TBW {
     background-color: #e06665;
+    color: black;
   }
   .offscreen {
     position: absolute;
@@ -49,21 +52,33 @@ const GlobalStyle = createGlobalStyle`
   }
   h2 {
     text-align:center;
+    margin-top: var(--h2top);
   }
   h3 {
     color: var(--darkgrey);
     border-bottom: 1px solid var(--litegrey);
+    margin-top:30px;
   }
 `
 
 const ContentStyles = styled.div`
   max-width: 800px;
-  min-width: 350px;
+  min-width: 340px;
   margin: 20px auto;
   background-color: var(--white);
   border-radius: var(--radius);
-  padding: 5px;
+  padding: 10px;
+  /* @media (max-width:800px) {
+    width:400px;
+  } */
+  @media (min-width: 600px){
+    width: 500px;
+    padding: 30px;
+    padding-top:10px;
+  }
 `
+
+// figure out some width breakpoints
 
 const Layout = ({ children }) => {
   return (

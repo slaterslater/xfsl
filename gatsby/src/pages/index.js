@@ -65,7 +65,7 @@ const IndexPage = ({ data }) => {
         ))}
           </tbody>
       </TableStyles>
-      <h3>Standings</h3>
+      <h3>XFSL Standings</h3>
       {/* <LeaderboardStyles>
         {ranking.map((team, i)=> (
           <li key={team.name}><span className='rank'>{i+1}<sup>{position[i]}</sup></span> <span className={team.name}>{team.name}</span></li>

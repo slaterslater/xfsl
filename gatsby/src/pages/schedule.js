@@ -28,7 +28,7 @@ const SchedulePage = ({ data }) => {
   return (
     <>
       <SEO title="Schedule" />
-      <h2>2021 XFSL Season</h2>
+      <h2>XFSL Season 2021</h2>
       {season.map((week, i) => (
         <div key={week.date} id={`week${i+1}`}>
           <h3>{dayjs(week.date).format('MMMM D')}</h3>

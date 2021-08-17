@@ -4,10 +4,6 @@ import Nav from "./Nav"
 import { Link } from "@reach/router"
 
 const HeaderStyles = styled.header`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background-color: var(--blue);
   padding: 15px 0;
   border-bottom: 1px solid black;

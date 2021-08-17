@@ -6,8 +6,9 @@ import styled from "styled-components"
 const NavStyles = styled.nav`
   width: 100%;
   ul {
+    max-width: 700px;
     padding: 0;
-    margin: 0;
+    margin: 0 auto;
     list-style-type: none;
     display: flex;
     justify-content: space-around;

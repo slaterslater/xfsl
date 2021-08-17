@@ -11,13 +11,18 @@ export const TableStyles = styled.table`
   acronym[title] {
     text-decoration: none;
   }
-  th, .th{
+  th {
     text-transform: uppercase;
     color: var(--darkgrey);
     font-size: small;
     font-weight: bold;
+    padding-bottom:5px;
   }
   .th {
+    text-transform: uppercase;
+    color: var(--darkgrey);
+    font-size: small;
+    font-weight: bold;
     text-align: right;
     width: 20px;
   }
