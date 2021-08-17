@@ -1,8 +1,6 @@
-import { StaticImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 import Nav from "./Nav"
-import Logo from "../images/xfsl-logo.png"
 import { Link } from "@reach/router"
 
 const HeaderStyles = styled.header`
@@ -12,18 +10,16 @@ const HeaderStyles = styled.header`
   align-items: center;
   background-color: var(--blue);
   padding: 15px 0;
-  h1 {
-    position: absolute;
-    left: -9999em;
-  }
+  border-bottom: 1px solid black;
+  box-shadow: 0 5px 5px 0 var(--grey);
 `
 
 const Header = () => {
   return (
     <HeaderStyles>
       <Link to="/">
-        <h1>Xtremely Friendly Softball League</h1>
-        <img src={Logo} alt="logo" width="80" height="40" />
+        <h1 className='offscreen'>Xtremely Friendly Softball League</h1>
+        
       </Link>
       <Nav />
     </HeaderStyles>

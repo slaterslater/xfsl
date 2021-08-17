@@ -4,7 +4,7 @@ import React, { createContext, useEffect, useState } from "react"
 export const LeagueContext = createContext()
 
 export const LeagueProvider = ({ children }) => {
-  const [ranks, setRanks] = useState(["foo"])
+  const [ranking, setRanking] = useState([])
 
   const data = useStaticQuery(graphql`
     query {
@@ -43,7 +43,7 @@ export const LeagueProvider = ({ children }) => {
       total[game.home][home_result]++
       return total
     }, {})
-    for (const [team, result] of Object.entries(results)) {
+    for (const [ _, result] of Object.entries(results)) {
       result.pts = result.win * 2 + result.tie
     }
     let standings = Object.keys(results).map(key => ({
@@ -52,11 +52,11 @@ export const LeagueProvider = ({ children }) => {
     }))
     standings.sort((a, b) => b.record.pts - a.record.pts)
 
-    setRanks(standings)
+    setRanking(standings)
   }, [])
 
   return (
-    <LeagueContext.Provider value={{ ranks }}>
+    <LeagueContext.Provider value={{ ranking }}>
       {children}
     </LeagueContext.Provider>
   )

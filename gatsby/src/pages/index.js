@@ -1,29 +1,98 @@
-import { graphql } from "gatsby"
-import React, { useEffect, useState } from "react"
+import { graphql, Link } from "gatsby"
+import React, { useEffect, useState, useContext } from "react"
 import dayjs from 'dayjs'
 import SEO from "../components/SEO"
+import { LeagueContext } from "../components/LeagueContext"
+import styled from "styled-components"
+import { TableStyles } from "../styles/TableStyles"
+
+const LeaderboardStyles = styled.ul`
+  list-style-type: none;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  li span {
+    width: 185px;
+    padding: 5px;
+    text-align: center;
+    display: inline-block;
+  }
+  .rank{
+    width:50px;
+    text-align:right;
+    font-size:small;
+    font-weight: bold;
+    color: var(--slate)
+  }
+`
 
 const IndexPage = ({ data }) => {
-  const [thisWeek, setThisWeek] = useState([])
+  const [thisWeek, setThisWeek] = useState({})
+  const { ranking } = useContext(LeagueContext)
+  const position = ['st', 'nd', 'rd', 'th']
 
   useEffect(() => {
     const day = num => dayjs().day(num).format('YYYY-MM-DD')
     const isThisWeek = game => game.date > day(0) && game.date <= day(7)
     const games = data.games.nodes.filter(game => isThisWeek(game))
-    setThisWeek(games)
-  }, [])
+    setThisWeek({
+      date: games[0].date,
+      name: games[0].name,
+      games
+    })
+  }, [data])
 
   return (
     <>
       <SEO title="Home" />
-      <h2>{dayjs(thisWeek[0]?.date).format('MMMM D')}</h2>
-      <ul>
-        {thisWeek.map(game => (
-          <li key={game.id}>
-            {game.away} @ {game.home}
-          </li>
+      <h2>{dayjs(thisWeek?.date).format('MMMM D')}</h2>
+      <h3>{thisWeek?.name}</h3>
+      <TableStyles>
+        <thead>
+        <tr>
+          <th className='offscreen'>Time</th>
+          <th>Away</th>
+          <th>Home</th>
+        </tr>
+        </thead>
+        <tbody>
+        {thisWeek.games?.map(game => (
+          <tr key={game.id}>
+            <td className='th'>{game.time}</td> 
+            <td className={game.away}>{game.away}</td>
+            <td className={game.home}>{game.home}</td>
+          </tr>
         ))}
-      </ul>
+          </tbody>
+      </TableStyles>
+      <h3>Standings</h3>
+      {/* <LeaderboardStyles>
+        {ranking.map((team, i)=> (
+          <li key={team.name}><span className='rank'>{i+1}<sup>{position[i]}</sup></span> <span className={team.name}>{team.name}</span></li>
+        ))}
+      </LeaderboardStyles> */}
+      <TableStyles>
+        <tr>
+          <th><acronym title="position">POS</acronym></th>
+          <th>TEAM</th>
+          <th><acronym title="games played">GP</acronym></th>
+          <th><acronym title="wins">W</acronym></th>
+          <th><acronym title="losses">L</acronym></th>
+          <th><acronym title="ties">T</acronym></th>
+          <th><acronym title="points">PTS</acronym></th>
+        </tr>
+        {ranking.map((team, i) => (
+          <tr className={team.name}>
+            <td>{i + 1}</td>
+            <td>{team.name}</td>
+            <td>{team.record.gp}</td>
+            <td>{team.record.win}</td>
+            <td>{team.record.loss}</td>
+            <td>{team.record.tie}</td>
+            <td>{team.record.pts}</td>
+          </tr>
+        ))}
+      </TableStyles>
     </>
   )
 }
@@ -33,7 +102,7 @@ export const query = graphql`
     games: allSanityGame(sort: { fields: [date, time], order: [ASC, ASC] }) {
       nodes {
         id
-        week
+        name
         date
         time
         away

@@ -1,18 +1,20 @@
 import { graphql } from "gatsby"
 import React, { useEffect, useState } from "react"
+import dayjs from "dayjs"
 import SEO from "../components/SEO"
+import { TableStyles } from "../styles/TableStyles"
 
-const SchedulePage = ({data}) => {
-    const [season, setSeason] = useState({})
+const SchedulePage = ({ data }) => {
+  const [season, setSeason] = useState([])
 
-   useEffect(()=>{
+  useEffect(() => {
     const weeks = data.games.nodes.reduce((season, game) => {
-      let week = season[season.length -1]
-      if (week?.date != game.date) {
+      let week = season[season.length - 1]
+      if (week?.date !== game.date) {
         week = {
-          week : game.week,
-          date : game.date,
-          games : [game]
+          name: game.name,
+          date: game.date,
+          games: [game],
         }
         season.push(week)
       } else {
@@ -21,12 +23,36 @@ const SchedulePage = ({data}) => {
       return season
     }, [])
     setSeason(weeks)
-  },[])
-  
+  }, [data])
+
   return (
     <>
       <SEO title="Schedule" />
-      <p>Schedule of {season.length} weeks</p>
+      <h2>2021 XFSL Season</h2>
+      {season.map((week, i) => (
+        <div key={week.date} id={`week${i+1}`}>
+          <h3>{dayjs(week.date).format('MMMM D')}</h3>
+          <TableStyles>
+          {/* <caption>{week.name}</caption> */}
+        <thead>
+        <tr>
+          <th className='offscreen'>Time</th>
+          <th>Away</th>
+          <th>Home</th>
+        </tr>
+        </thead>
+        <tbody>
+        {week.games?.map(game => (
+          <tr key={game.id}>
+            <td className='th'>{game.time}</td> 
+            <td className={game.away}>{game.away}</td>
+            <td className={game.home}>{game.home}</td>
+          </tr>
+        ))}
+        </tbody>
+      </TableStyles>
+        </div>
+      ))}
     </>
   )
 }
@@ -34,17 +60,17 @@ const SchedulePage = ({data}) => {
 export default SchedulePage
 
 export const query = graphql`
-query {
-  games: allSanityGame(sort: {fields: [date, time], order: [ASC, ASC]}) {
-    nodes {
-      away
-      home
-      winner
-      id
-      time
-      week
-      date
+  query {
+    games: allSanityGame(sort: { fields: [date, time], order: [ASC, ASC] }) {
+      nodes {
+        away
+        home
+        winner
+        id
+        time
+        name
+        date
+      }
     }
   }
-}
 `

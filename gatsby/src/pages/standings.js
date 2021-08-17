@@ -1,30 +1,28 @@
 import React, { useContext } from "react"
 import SEO from "../components/SEO"
 import { LeagueContext } from "../components/LeagueContext"
-// import Standings from "../components/Standings"
+import styled from "styled-components"
+import { TableStyles } from "../styles/TableStyles"
 
 const StandingsPage = () => {
-  // const games = data.games.nodes
-
-  const { ranks } = useContext(LeagueContext)
-  console.log("STANDINGS FROM CONTEXT", ranks)
+  const { ranking } = useContext(LeagueContext)
   return (
     <>
       <SEO title="Standings" />
-      {/* <p>Standings page</p> */}
-      <table>
+      <h2>Standings 2021</h2>
+      <TableStyles>
         <tr>
-          <th>Rank</th>
-          <th>Team</th>
-          <th>GP</th>
-          <th>W</th>
-          <th>L</th>
-          <th>T</th>
-          <th>PTS</th>
+          <th><acronym title="position">POS</acronym></th>
+          <th>TEAM</th>
+          <th><acronym title="games played">GP</acronym></th>
+          <th><acronym title="wins">W</acronym></th>
+          <th><acronym title="losses">L</acronym></th>
+          <th><acronym title="ties">T</acronym></th>
+          <th><acronym title="points">PTS</acronym></th>
         </tr>
-        {ranks.map((team, i) => (
-          <tr>
-            <td>{i+1}</td>
+        {ranking.map((team, i) => (
+          <tr className={team.name}>
+            <td>{i + 1}</td>
             <td>{team.name}</td>
             <td>{team.record.gp}</td>
             <td>{team.record.win}</td>
@@ -33,8 +31,7 @@ const StandingsPage = () => {
             <td>{team.record.pts}</td>
           </tr>
         ))}
-      </table>
-      
+      </TableStyles>
     </>
   )
 }

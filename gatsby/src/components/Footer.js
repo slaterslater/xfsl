@@ -7,6 +7,8 @@ const FooterStyles = styled.footer`
   width: 100%;
   text-align: center;
   margin-top: auto;
+  border-top: 1px solid black;
+  box-shadow: 0px 5px 5px var(--slate) inset;
 `
 
 const Footer = () => (
