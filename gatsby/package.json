@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "slaterslater <slaterslater@gmail.com>",
   "dependencies": {
+    "@fontsource/graduate": "^4.5.0",
     "babel-plugin-styled-components": "^1.13.2",
     "dayjs": "^1.10.6",
     "gatsby": "^3.10.2",

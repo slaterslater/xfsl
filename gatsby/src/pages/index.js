@@ -29,7 +29,7 @@ const IndexPage = ({ data }) => {
       <TableStyles>
         <thead>
           <tr>
-            <th className="offscreen">Time</th>
+            <th><span className="offscreen">Time</span></th>
             <th>Away</th>
             <th>Home</th>
           </tr>
@@ -47,8 +47,8 @@ const IndexPage = ({ data }) => {
       <h3>XFSL Standings</h3>
       <TableStyles>
         <tr>
-          <th className="offscreen">Position</th>
-          <th>TEAM</th>
+          <th><span className="offscreen">Position</span></th>
+          <th><span className="offscreen">TEAM</span></th>
           <th>
             <acronym title="games played">GP</acronym>
           </th>

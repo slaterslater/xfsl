@@ -1,6 +1,7 @@
 import React from "react"
 import styled, { createGlobalStyle } from "styled-components"
 import "normalize.css"
+import "@fontsource/graduate"
 import Footer from "./Footer"
 import Header from "./Header"
 
@@ -22,7 +23,8 @@ const GlobalStyle = createGlobalStyle`
     color: var(--slate);
     display: flex;
     flex-direction: column;
-    font-family: Helvetica, Arial, sans-serif;
+    /* font-family: Helvetica, Arial, sans-serif; */
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
     --radius: 8px;
     --h2top: 15px;
     @media (max-width: 400px) {
@@ -33,14 +35,14 @@ const GlobalStyle = createGlobalStyle`
   }
   .Diamond {
     background-color: #3c85c4;
-    color: var(--white)
+    color: white;
   }
   .LEMONHEADS {
     background-color: #e5bf2e;
   }
   .GasVills {
     background-color: #6aa94d;
-    color: purple;
+    color: white;
   }
   .TBW {
     background-color: #e06665;
@@ -49,6 +51,9 @@ const GlobalStyle = createGlobalStyle`
   .offscreen {
     position: absolute;
     left: -9999em;
+  }
+  h1, h2, h3, h4, h5, h6, .heading-font {
+    font-family: "Graduate";
   }
   h2 {
     text-align:center;
