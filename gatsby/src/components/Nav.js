@@ -34,7 +34,7 @@ const Nav = () => (
       <li>
         <Link to="/">
           <StaticImage
-            src="../images/xfsl-logo.png"
+            src="../images/xfsl-logo-80x40.png"
             width={80}
             height={40}
             alt="logo"

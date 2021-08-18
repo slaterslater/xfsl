@@ -47,7 +47,7 @@ const IndexPage = ({ data }) => {
       <h3>XFSL Standings</h3>
       <TableStyles>
         <tr>
-          <th class="offscreen">Position</th>
+          <th className="offscreen">Position</th>
           <th>TEAM</th>
           <th>
             <acronym title="games played">GP</acronym>

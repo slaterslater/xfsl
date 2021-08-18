@@ -26,6 +26,9 @@ export const TableStyles = styled.table`
     font-weight: bold;
     text-align: right;
     width: 20px;
+    sup {
+    top: -0.3em;
+  }
   }
   td {
     min-width: 50px;
@@ -33,8 +36,5 @@ export const TableStyles = styled.table`
     @media (min-width: 300px) {
       min-width: 1px;
     }
-  }
-  li sup {
-    top: -0.3em;
   }
 `
