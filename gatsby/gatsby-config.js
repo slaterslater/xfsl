@@ -7,7 +7,7 @@ module.exports = {
     title: `XFSL`,
     description: `Xtremely Friendly Softball League`,
     author: `slaterslater`,
-    siteUrl: `https://xfsl.netlify.app/`,
+    siteUrl: `https://xfsl.netlify.app`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
