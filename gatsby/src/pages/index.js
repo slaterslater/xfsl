@@ -23,7 +23,7 @@ const IndexPage = ({ data }) => {
 
   return (
     <>
-      <SEO title="Home" />
+      <SEO />
       <h2>{dayjs(thisWeek?.date).format("MMMM D")}</h2>
       <h3>{thisWeek?.name}</h3>
       <TableStyles>

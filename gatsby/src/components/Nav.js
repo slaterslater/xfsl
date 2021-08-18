@@ -34,10 +34,10 @@ const Nav = () => (
       <li>
         <Link to="/">
           <StaticImage
-            src="../images/logo.png"
+            src={'../images/xfsl-logo.png'}
             width={80}
             height={40}
-            alt="logo"
+            alt="xfsl logo"
           />
         </Link>
       </li>
