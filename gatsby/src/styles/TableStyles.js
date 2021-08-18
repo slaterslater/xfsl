@@ -27,8 +27,8 @@ export const TableStyles = styled.table`
     text-align: right;
     width: 20px;
     sup {
-    top: -0.3em;
-  }
+      top: -0.3em;
+    }
   }
   td {
     min-width: 50px;
