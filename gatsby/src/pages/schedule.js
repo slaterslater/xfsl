@@ -33,7 +33,6 @@ const SchedulePage = ({ data }) => {
         <div key={week.date} id={`week${i + 1}`}>
           <h3>{dayjs(week.date).format("MMMM D")}</h3>
           <TableStyles>
-            {/* <caption>{week.name}</caption> */}
             <thead>
               <tr>
                 <th className="offscreen">Time</th>

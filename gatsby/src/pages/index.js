@@ -1,4 +1,4 @@
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import React, { useEffect, useState, useContext } from "react"
 import dayjs from "dayjs"
 import SEO from "../components/SEO"
@@ -29,7 +29,9 @@ const IndexPage = ({ data }) => {
       <TableStyles>
         <thead>
           <tr>
-            <th><span className="offscreen">Time</span></th>
+            <th>
+              <span className="offscreen">Time</span>
+            </th>
             <th>Away</th>
             <th>Home</th>
           </tr>
@@ -46,39 +48,47 @@ const IndexPage = ({ data }) => {
       </TableStyles>
       <h3>XFSL Standings</h3>
       <TableStyles>
-        <tr>
-          <th><span className="offscreen">Position</span></th>
-          <th><span className="offscreen">TEAM</span></th>
-          <th>
-            <acronym title="games played">GP</acronym>
-          </th>
-          <th>
-            <acronym title="wins">W</acronym>
-          </th>
-          <th>
-            <acronym title="losses">L</acronym>
-          </th>
-          <th>
-            <acronym title="ties">T</acronym>
-          </th>
-          <th>
-            <acronym title="points">PTS</acronym>
-          </th>
-        </tr>
-        {ranking.map((team, i) => (
-          <tr className={team.name}>
-            <td className="th">
-              {i + 1}
-              <sup>{position[i]}</sup>
-            </td>
-            <td>{team.name}</td>
-            <td>{team.record.gp}</td>
-            <td>{team.record.win}</td>
-            <td>{team.record.loss}</td>
-            <td>{team.record.tie}</td>
-            <td>{team.record.pts}</td>
+        <thead>
+          <tr>
+            <th>
+              <span className="offscreen">Position</span>
+            </th>
+            <th>
+              <span className="offscreen">TEAM</span>
+            </th>
+            <th>
+              <acronym title="games played">GP</acronym>
+            </th>
+            <th>
+              <acronym title="wins">W</acronym>
+            </th>
+            <th>
+              <acronym title="losses">L</acronym>
+            </th>
+            <th>
+              <acronym title="ties">T</acronym>
+            </th>
+            <th>
+              <acronym title="points">PTS</acronym>
+            </th>
           </tr>
-        ))}
+        </thead>
+        <tbody>
+          {ranking.map((team, i) => (
+            <tr className={team.name}>
+              <td className="th">
+                {i + 1}
+                <sup>{position[i]}</sup>
+              </td>
+              <td>{team.name}</td>
+              <td>{team.record.gp}</td>
+              <td>{team.record.win}</td>
+              <td>{team.record.loss}</td>
+              <td>{team.record.tie}</td>
+              <td>{team.record.pts}</td>
+            </tr>
+          ))}
+        </tbody>
       </TableStyles>
     </>
   )

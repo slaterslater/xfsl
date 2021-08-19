@@ -1,9 +1,9 @@
 import React from "react"
-import styled, { createGlobalStyle } from "styled-components"
-import "normalize.css"
 import "@fontsource/graduate"
-import Footer from "./Footer"
+import "normalize.css"
+import styled, { createGlobalStyle } from "styled-components"
 import Header from "./Header"
+import Footer from "./Footer"
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -73,17 +73,12 @@ const ContentStyles = styled.div`
   background-color: var(--white);
   border-radius: var(--radius);
   padding: 10px;
-  /* @media (max-width:800px) {
-    width:400px;
-  } */
   @media (min-width: 600px) {
     width: 500px;
     padding: 30px;
     padding-top: 10px;
   }
 `
-
-// figure out some width breakpoints
 
 const Layout = ({ children }) => {
   return (

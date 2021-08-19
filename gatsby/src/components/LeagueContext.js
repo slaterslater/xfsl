@@ -53,7 +53,7 @@ export const LeagueProvider = ({ children }) => {
     standings.sort((a, b) => b.record.pts - a.record.pts)
 
     setRanking(standings)
-  }, [])
+  }, [data])
 
   return (
     <LeagueContext.Provider value={{ ranking }}>

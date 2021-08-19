@@ -1,7 +1,7 @@
+import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 import Nav from "./Nav"
-import { Link } from "@reach/router"
 
 const HeaderStyles = styled.header`
   background-color: var(--blue);

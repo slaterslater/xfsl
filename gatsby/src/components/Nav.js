@@ -29,7 +29,9 @@ const Nav = () => (
   <NavStyles>
     <ul>
       <li>
-        <Link className="heading-font" to="/">This Week</Link>
+        <Link className="heading-font" to="/">
+          This Week
+        </Link>
       </li>
       <li>
         <Link to="/">
@@ -42,7 +44,9 @@ const Nav = () => (
         </Link>
       </li>
       <li>
-        <Link className="heading-font" to="/schedule">Schedule</Link>
+        <Link className="heading-font" to="/schedule">
+          Schedule
+        </Link>
       </li>
     </ul>
   </NavStyles>

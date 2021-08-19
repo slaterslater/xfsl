@@ -1,4 +1,4 @@
-.txt
+*.psd
 node_modules
 dist
 notes
