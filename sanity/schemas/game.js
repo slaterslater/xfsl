@@ -1,5 +1,7 @@
 import { BiBaseball as icon } from 'react-icons/bi';
 import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+dayjs.extend(utc)
 
 const teams = [
   {title: 'Diamond Heist', value: 'Diamond Heist'},
@@ -20,39 +22,35 @@ export default {
       type: 'string',
     },
     {
-      title: 'Date',
-      name: 'date',
-      type: 'date',
+      title: 'Date & Time',
+      name: 'datetime',
+      type: 'datetime',
+      options: {
+        dateFormat: 'YYYY-MM-DD',
+        timeStep: 15,
+      },
+      validation: Rule => Rule.required()
     },
     {
-      title: 'Time',
-      name: 'time',
+      title: 'Away Team',
+      name: 'away',
       type: 'array',
-      of: [{ type: 'number' }],
-      options: {
-        list: [
-          {title: '630', value: 630},
-          {title: '700', value: 700},
-          {title: '830', value: 830},
-          {title: '900', value: 900},
-        ]
+      of: [{ type: 'string' }],
+      options: { 
+        list: teams,
+        layout: 'grid'
       },
       validation: Rule => Rule.max(1)
     },
     {
-      title: 'Away',
-      name: 'away',
-      type: 'array',
-      of: [{ type: 'string' }],
-      options: { list: teams },
-      validation: Rule => Rule.max(1)
-    },
-    {
-      title: 'Home',
+      title: 'Home Team',
       name: 'home',
       type: 'array',
       of: [{ type: 'string' }],
-      options: { list: teams },
+      options: { 
+        list: teams,
+        layout: 'grid'
+      },
       validation: Rule => Rule.max(1) 
     },
     {
@@ -66,7 +64,8 @@ export default {
           {title: 'Home', value: 'Home'},
           {title: 'Tie', value: 'Tie'},
           {title: 'Not Played', value: 'Not Played'},
-        ]
+        ],
+        layout: 'grid'
       },
       validation: Rule => Rule.max(1)
     },
@@ -74,15 +73,15 @@ export default {
   preview: {
     select: {
       week: 'name',
-      date: 'date',
-      time: 'time.0',
+      date: 'datetime',
       away: 'away.0',
       home: 'home.0',
     },
-    prepare({ week, date, time, home, away }) {
+    prepare({ week, date, home, away }) {
+      const datetime = dayjs.utc(date).local().format('MMMM D @ hmm')
       return {
         title: `${away || '???'} vs ${home || '???'}`,
-        subtitle: `${dayjs(date).format('MMMM D')} @ ${time} : ${week}`,
+        subtitle: `${datetime} : ${week}`,
       }
     }
   }, // preview
@@ -91,7 +90,7 @@ export default {
       title: 'Date',
       name: 'date_desc',
       by: [
-        {field: 'date', direction: 'asc'},
+        {field: 'datetime', direction: 'asc'},
       ]
     },
   ], // orderings
