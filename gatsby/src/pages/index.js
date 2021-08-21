@@ -5,17 +5,21 @@ import SEO from "../components/SEO"
 import { LeagueContext } from "../components/LeagueContext"
 import { TableStyles } from "../styles/TableStyles"
 
+
 const IndexPage = ({ data }) => {
   const [thisWeek, setThisWeek] = useState({})
   const { ranking } = useContext(LeagueContext)
   const position = ["st", "nd", "rd", "th"]
 
   useEffect(() => {
-    const day = num => dayjs().day(num).format("YYYY-MM-DD")
-    const isThisWeek = game => game.date > day(0) && game.date <= day(7)
-    const games = data.games.nodes.filter(game => isThisWeek(game))
+    const day = num => dayjs().day(num).format('YYYY-MM-DD')
+    const isThisWeek = date => date > day(0) && date <= day(7)
+    const games = data.games.nodes.filter(game => {
+      const date = dayjs(game.datetime).format('YYYY-MM-DD')
+      return isThisWeek(date)
+    })
     setThisWeek({
-      date: games[0].date,
+      date: games[0].datetime,
       name: games[0].name,
       games,
     })
@@ -24,7 +28,7 @@ const IndexPage = ({ data }) => {
   return (
     <>
       <SEO />
-      <h2>{dayjs(thisWeek?.date).format("MMMM D")}</h2>
+      <h2>{dayjs(thisWeek?.date).format('MMMM D')}</h2>
       <h3>{thisWeek?.name}</h3>
       <TableStyles>
         <thead>
@@ -39,7 +43,7 @@ const IndexPage = ({ data }) => {
         <tbody>
           {thisWeek.games?.map(game => (
             <tr key={game.id}>
-              <td className="th">{game.time}</td>
+              <td className="th">{dayjs(game.datetime).format('hmm')}</td>
               <td className={game.away}>{game.away}</td>
               <td className={game.home}>{game.home}</td>
             </tr>
@@ -96,15 +100,13 @@ const IndexPage = ({ data }) => {
 
 export const query = graphql`
   query {
-    games: allSanityGame(sort: { fields: [date, time], order: [ASC, ASC] }) {
+    games: allSanityGame(sort: { fields: datetime, order: ASC }) {
       nodes {
         id
         name
-        date
-        time
+        datetime
         away
         home
-        winner
       }
     }
   }

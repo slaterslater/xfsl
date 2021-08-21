@@ -10,10 +10,10 @@ const SchedulePage = ({ data }) => {
   useEffect(() => {
     const weeks = data.games.nodes.reduce((season, game) => {
       let week = season[season.length - 1]
-      if (week?.date !== game.date) {
+      if (week?.name !== game.name) {
         week = {
           name: game.name,
-          date: game.date,
+          datetime: game.datetime,
           games: [game],
         }
         season.push(week)
@@ -30,8 +30,8 @@ const SchedulePage = ({ data }) => {
       <SEO title="Schedule" />
       <h2>XFSL Season 2021</h2>
       {season.map((week, i) => (
-        <div key={week.date} id={`week${i + 1}`}>
-          <h3>{dayjs(week.date).format("MMMM D")}</h3>
+        <div key={`week${i + 1}`} id={`week${i + 1}`}>
+          <h3>{dayjs(week.datetime).format('MMMM D')}</h3>
           <TableStyles>
             <thead>
               <tr>
@@ -43,7 +43,7 @@ const SchedulePage = ({ data }) => {
             <tbody>
               {week.games?.map(game => (
                 <tr key={game.id}>
-                  <td className="th">{game.time}</td>
+                  <td className="th">{dayjs(game.datetime).format('hmm')}</td>
                   <td className={game.away}>{game.away}</td>
                   <td className={game.home}>{game.home}</td>
                 </tr>
@@ -60,15 +60,14 @@ export default SchedulePage
 
 export const query = graphql`
   query {
-    games: allSanityGame(sort: { fields: [date, time], order: [ASC, ASC] }) {
+    games: allSanityGame(sort: { fields: datetime, order: ASC }) {
       nodes {
+        id
+        name
+        datetime
         away
         home
         winner
-        id
-        time
-        name
-        date
       }
     }
   }

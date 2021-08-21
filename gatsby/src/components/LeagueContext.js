@@ -9,7 +9,6 @@ export const LeagueProvider = ({ children }) => {
   const data = useStaticQuery(graphql`
     query {
       games: allSanityGame(
-        sort: { fields: [date, time], order: [ASC, ASC] }
         filter: { winner: { ne: "" } }
       ) {
         nodes {
@@ -25,6 +24,7 @@ export const LeagueProvider = ({ children }) => {
     const played = data.games.nodes
     const empty = () => ({ gp: 0, win: 0, loss: 0, tie: 0 })
     const results = played.reduce((total, game) => {
+      if (game.winner == 'Not Played') return total
       if (!total[game.away]) total[game.away] = empty()
       if (!total[game.home]) total[game.home] = empty()
       let away_result = "tie"
