@@ -1,4 +1,5 @@
 import { graphql, useStaticQuery } from "gatsby"
+import { resetWarningCache } from "prop-types"
 import React, { createContext, useEffect, useState } from "react"
 
 export const LeagueContext = createContext()
@@ -22,7 +23,7 @@ export const LeagueProvider = ({ children }) => {
 
   useEffect(() => {
     const played = data.games.nodes
-    const empty = () => ({ gp: 0, win: 0, loss: 0, tie: 0 })
+    const empty = () => ({ gp: 0, win: [], loss: [], tie: [] })
     const results = played.reduce((total, game) => {
       if (game.winner == 'Not Played') return total
       if (!total[game.away]) total[game.away] = empty()
@@ -39,19 +40,19 @@ export const LeagueProvider = ({ children }) => {
       }
       total[game.away].gp++
       total[game.home].gp++
-      total[game.away][away_result]++
-      total[game.home][home_result]++
+      total[game.away][away_result].push(game.home)
+      total[game.home][home_result].push(game.away)
       return total
     }, {})
-    for (const [_, result] of Object.entries(results)) {
-      result.pts = result.win * 2 + result.tie
-    }
     let standings = Object.keys(results).map(key => ({
       name: key,
-      record: results[key],
+      ...results[key],
+      pts: results[key].win.length * 2 + results[key].tie.length
     }))
-    standings.sort((a, b) => b.record.pts - a.record.pts)
 
+    // 2DO
+    // determine tiebreaker from number of head to head wins 
+    standings.sort((a, b) => b.pts - a.pts)
     setRanking(standings)
   }, [data])
 

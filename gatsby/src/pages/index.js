@@ -85,11 +85,11 @@ const IndexPage = ({ data }) => {
                 <sup>{position[i]}</sup>
               </td>
               <td>{team.name}</td>
-              <td>{team.record.gp}</td>
-              <td>{team.record.win}</td>
-              <td>{team.record.loss}</td>
-              <td>{team.record.tie}</td>
-              <td>{team.record.pts}</td>
+              <td>{team.gp}</td>
+              <td>{team.win.length}</td>
+              <td>{team.loss.length}</td>
+              <td>{team.tie.length}</td>
+              <td>{team.pts}</td>
             </tr>
           ))}
         </tbody>
