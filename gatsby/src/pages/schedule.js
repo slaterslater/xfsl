@@ -31,7 +31,7 @@ const SchedulePage = ({ data }) => {
       <h2>XFSL Season 2021</h2>
       {season.map((week, i) => (
         <div key={`week${i + 1}`} id={`week${i + 1}`}>
-          <h3>{dayjs(week.datetime).format('MMMM D')}</h3>
+          <h3>{dayjs(week.datetime).format("MMMM D")}</h3>
           <TableStyles>
             <thead>
               <tr>
@@ -43,7 +43,7 @@ const SchedulePage = ({ data }) => {
             <tbody>
               {week.games?.map(game => (
                 <tr key={game.id}>
-                  <td className="th">{dayjs(game.datetime).format('hmm')}</td>
+                  <td className="th">{dayjs(game.datetime).format("hmm")}</td>
                   <td className={game.away}>{game.away}</td>
                   <td className={game.home}>{game.home}</td>
                 </tr>

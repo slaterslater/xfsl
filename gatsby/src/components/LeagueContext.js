@@ -9,9 +9,7 @@ export const LeagueProvider = ({ children }) => {
 
   const data = useStaticQuery(graphql`
     query {
-      games: allSanityGame(
-        filter: { winner: { ne: "" } }
-      ) {
+      games: allSanityGame(filter: { winner: { ne: "" } }) {
         nodes {
           away
           home
@@ -25,7 +23,7 @@ export const LeagueProvider = ({ children }) => {
     const played = data.games.nodes
     const empty = () => ({ gp: 0, win: [], loss: [], tie: [] })
     const results = played.reduce((total, game) => {
-      if (game.winner == 'Not Played') return total
+      if (game.winner == "Not Played") return total
       if (!total[game.away]) total[game.away] = empty()
       if (!total[game.home]) total[game.home] = empty()
       let away_result = "tie"
@@ -46,13 +44,20 @@ export const LeagueProvider = ({ children }) => {
     }, {})
     let standings = Object.keys(results).map(key => ({
       name: key,
+      pts: 2 * results[key].win.length + results[key].tie.length,
       ...results[key],
-      pts: results[key].win.length * 2 + results[key].tie.length
     }))
 
-    // 2DO
-    // determine tiebreaker from number of head to head wins 
-    standings.sort((a, b) => b.pts - a.pts)
+    // sort teams based on pts
+    // if equal pts, sort on h2h wins
+    standings.sort((a, b) => {
+      if (a.pts === b.pts) {
+        const tiebreaker = (team, opponent) =>
+          team.win.filter(loser => loser == opponent.name).length
+        return tiebreaker(b, a) - tiebreaker(a, b)
+      }
+      return b.pts - a.pts
+    })
     setRanking(standings)
   }, [data])
 
