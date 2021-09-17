@@ -25,16 +25,17 @@ export const TableStyles = styled.table`
     font-size: small;
     font-weight: bold;
     text-align: right;
-    width: 20px;
+    /* width: 20px; */
+    width: 8%;
     sup {
       top: -0.3em;
     }
   }
   td {
-    min-width: 50px;
+    width: 46%;
     padding: 5px;
-    @media (min-width: 300px) {
+    /* @media (min-width: 300px) {
       min-width: 1px;
-    }
+    } */
   }
 `
