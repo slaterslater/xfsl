@@ -36,8 +36,8 @@ const SchedulePage = ({ data }) => {
             <thead>
               <tr>
                 <th className="offscreen">Time</th>
-                <th>Away</th>
-                <th>Home</th>
+                <th style={{minWidth:'115px'}}>Away</th>
+                <th style={{minWidth:'115px'}}>Home</th>
               </tr>
             </thead>
             <tbody>
