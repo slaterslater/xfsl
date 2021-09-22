@@ -11,6 +11,7 @@ export const LeagueProvider = ({ children }) => {
     query {
       games: allSanityGame(filter: { winner: { ne: "" } }) {
         nodes {
+          name
           away
           home
           winner
@@ -23,7 +24,8 @@ export const LeagueProvider = ({ children }) => {
     const played = data.games.nodes
     const empty = () => ({ gp: 0, win: [], loss: [], tie: [] })
     const results = played.reduce((total, game) => {
-      if (game.winner == "Not Played") return total
+      console.log() 
+      if (!game.name.toUpperCase().includes('WEEK') || game.winner == "Not Played") return total
       if (!total[game.away]) total[game.away] = empty()
       if (!total[game.home]) total[game.home] = empty()
       let away_result = "tie"
