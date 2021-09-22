@@ -35,8 +35,8 @@ const IndexPage = ({ data }) => {
             <th>
               <span className="offscreen">Time</span>
             </th>
-            <th>Away</th>
-            <th>Home</th>
+            <th style={{minWidth:'115px'}}>Away</th>
+            <th style={{minWidth:'115px'}}>Home</th>
           </tr>
         </thead>
         <tbody>
