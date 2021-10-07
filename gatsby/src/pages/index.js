@@ -18,8 +18,8 @@ const IndexPage = ({ data }) => {
       return isThisWeek(date)
     })
     setThisWeek({
-      date: games[0].datetime,
-      name: games[0].name,
+      date: games[0]?.datetime,
+      name: games[0]?.name,
       games,
     })
   }, [data])
@@ -28,27 +28,31 @@ const IndexPage = ({ data }) => {
     <>
       <SEO />
       <h2>{dayjs(thisWeek?.date).format("MMMM D")}</h2>
-      <h3>{thisWeek?.name}</h3>
-      <TableStyles>
-        <thead>
-          <tr>
-            <th>
-              <span className="offscreen">Time</span>
-            </th>
-            <th style={{minWidth:'115px'}}>Away</th>
-            <th style={{minWidth:'115px'}}>Home</th>
-          </tr>
-        </thead>
-        <tbody>
-          {thisWeek.games?.map(game => (
-            <tr key={game.id}>
-              <td className="th">{dayjs(game.datetime).format("hmm")}</td>
-              <td className={game.away}>{game.away}</td>
-              <td className={game.home}>{game.home}</td>
-            </tr>
-          ))}
-        </tbody>
-      </TableStyles>
+      {thisWeek.name &&
+        <>
+          <h3>{thisWeek?.name}</h3>
+          <TableStyles>
+            <thead>
+              <tr>
+                <th>
+                  <span className="offscreen">Time</span>
+                </th>
+                <th style={{minWidth:'115px'}}>Away</th>
+                <th style={{minWidth:'115px'}}>Home</th>
+              </tr>
+            </thead>
+            <tbody>
+              {thisWeek.games?.map(game => (
+                <tr key={game.id}>
+                  <td className="th">{dayjs(game.datetime).format("hmm")}</td>
+                  <td className={game.away}>{game.away}</td>
+                  <td className={game.home}>{game.home}</td>
+                </tr>
+              ))}
+            </tbody>
+          </TableStyles>
+        </> 
+      }
       <h3>XFSL Standings</h3>
       <TableStyles>
         <thead>
